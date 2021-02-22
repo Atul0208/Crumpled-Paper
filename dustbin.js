@@ -1,4 +1,4 @@
-class Ground {
+class D {
     constructor(x,y,width,height){
         var options={
             isStatic:true
@@ -7,6 +7,7 @@ class Ground {
         this.width=width
         this.height=height
         World.add(world,this.body);
+        
     }
     display(){
         var pos=this.body.position

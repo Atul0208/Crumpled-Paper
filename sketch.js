@@ -1,42 +1,51 @@
-const World=Matter.World;//const= constant; keeps the value constant
-const Engine=Matter.Engine;
-const Bodies=Matter.Bodies;
 
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
 var engine,world;
-var box1,box2,ground,pig1,log1;
+
+
 function setup() {
-  createCanvas(1200,400);
-  engine=Engine.create();
-  world=engine.world;
+	createCanvas( 2700,1200);
 
-box1= new Box(700,370,70,70);
 
-box2= new Box(920,370,70,70);
-log1= new Log (810,250,25);
-box3=new Box(700,200,70,70)
-box4=new Box(920,200,70,70)
-log2=new Log(810,140,25)
-pig1= new Pig(810,370)
-ground= new Ground (600,height,1200,20)
+	engine = Engine.create();
+	world = engine.world;
 
+	//Create the Bodies Here.
+downDustbin=new D(750+1800-100,960+200+50-39,279,26)
+lDustbin=new D(600+1800-100,847+200+50-39+2,26,250)
+rDustbin=new D(899+1800-100,847+200+50-39+2-127,26,250+257)
+ed=new D(2685,700-30,70,20)
+g=new Ground(1500,1192,3000,15)
+paper=new Paper(200,1188,34)
+	Engine.run(engine);
+  
 }
+
 
 function draw() {
-  background(0); 
-  Engine.update(engine);
+  rectMode(CENTER);
   
-box1.display();
-// box3.display();
-// box4.display();
-box2.display();
-pig1.display();
-ground.display();
-log1.display();
-log2.display();
-box3.display();
-box4.display();
+  Engine.update(engine)
+  background(0);
+  lDustbin.display();
+  g.display();
+  downDustbin.display();
+  lDustbin.display();
+  rDustbin.display();
+  ed.display();
+  paper.display();
+  keyPressed();
   drawSprites();
+ 
 }
-//World=physical world in which add the objects
-// Engine= creates physics engine
-//Bodies= creates physical objects which inhabit(occupy) the world
+function keyPressed(){
+  if(keyCode===UP_ARROW){
+Matter.Body.applyForce(paper.body,paper.body.position,{x:33,y:-16})
+  }
+}
+
+
+
